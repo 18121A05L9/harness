@@ -16,8 +16,6 @@ jobs:
         with:
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
           known_hosts: unnecessary
-      - name: Adding Known Hosts
-        run: ssh-keyscan -p 22 -H 54.235.235.133 >> ~/.ssh/known_hosts
       - name: Deploy
         run: |
           # export version="v${{ github.run_number }}"
