@@ -1,0 +1,24 @@
+---
+name: ci
+on:
+  push:
+    branches:
+      - main
+jobs:
+  pep8-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SERVER_PRIVATE_KEY }}
+          known_hosts: unnecessary
+      - name: Adding Known Hosts
+        run: ssh-keyscan -p 22 -H 52.90.79.3 >> ~/.ssh/known_hosts
+      - name: Deploy
+        run: |
+          # export version="v${{ github.run_number }}"
+          ssh -p 22 ubuntu@52.90.79.3 'mkdir hello'
