@@ -6,7 +6,7 @@ on:
       - main
 jobs:
   pep8-check:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -17,8 +17,8 @@ jobs:
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
           known_hosts: unnecessary
       - name: Adding Known Hosts
-        run: ssh-keyscan -p 22 -H 52.90.79.3 >> ~/.ssh/known_hosts
+        run: ssh-keyscan -p 22 -H 54.235.235.133 >> ~/.ssh/known_hosts
       - name: Deploy
         run: |
           # export version="v${{ github.run_number }}"
-          ssh -p 22 ubuntu@52.90.79.3 'sudo docker run -d -p 80:80 nginx'
+          ssh -p 22 ubuntu@54.235.235.133 'sudo docker run -d -p 80:80 nginx'
