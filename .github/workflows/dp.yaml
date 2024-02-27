@@ -19,4 +19,5 @@ jobs:
       - name: Deploy
         run: |
           # export version="v${{ github.run_number }}"
-          ssh -p 22 ubuntu@54.235.235.133 'sudo docker run -d -p 80:80 nginx'
+          #ssh -p 22 ubuntu@54.235.235.133 'sudo docker run -d -p 80:80 nginx'
+          mkdir hellodir
